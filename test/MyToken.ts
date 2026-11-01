@@ -22,8 +22,6 @@ describe("My Token", function () {
     const amount = ethers.parseUnits("1", decimals);
 
     // 0. 초기 balance 확인
-    console.log("[before] signer0:", ethers.formatUnits(await myTokenC.balanceOf(signer0.address), decimals), "MT");
-    console.log("[before] signer1:", ethers.formatUnits(await myTokenC.balanceOf(signer1.address), decimals), "MT");
     expect(await myTokenC.balanceOf(signer0.address)).to.equal(ethers.parseUnits(mintingAmount.toString(), decimals));
     expect(await myTokenC.balanceOf(signer1.address)).to.equal(0n);
 
@@ -35,8 +33,6 @@ describe("My Token", function () {
     await myTokenC.connect(signer1).transferFrom(signer0.address,signer1.address,amount);
 
     // 3. balance 확인
-    console.log("[after]  signer0:", ethers.formatUnits(await myTokenC.balanceOf(signer0.address), decimals), "MT");
-    console.log("[after]  signer1:", ethers.formatUnits(await myTokenC.balanceOf(signer1.address), decimals), "MT");
 
     expect(await myTokenC.balanceOf(signer1.address)).to.equal(amount);
 
